@@ -23,3 +23,5 @@
 hs_err_pid*
 /ATMSimulator/nbproject/private/
 /ATMSimulator/build/
+/nbproject/private/
+/build/
