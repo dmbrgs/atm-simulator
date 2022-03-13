@@ -1,0 +1,15 @@
+ATM simulator. 
+
+Tesk Description:
+
+Our client is a large US bank that would like to open a branch in Riga.
+To start operating they need to set up 20 ATMs around the city.
+The physical ATMs are already in place, however they require a proper OS.
+The client has chosen RobEd Solutions to develop a tailor made software solution for them. 
+
+The end product must accept and process credit cards, and ensure smooth user experience. 
+Complete error prone real-life flow that covers all possible scenarios must be in place.
+RobEd is known for its exceptional expertise within the Latvian banking sector, and we must defend our reputation.
+The client trusted us to figure out the business part of the problem as well.
+
+Let's start?
