@@ -5,11 +5,11 @@ public class Card {
     private String cardHolderName;
     private String cardPAN;
     private String cardExpiryDate;
-    private int cardSecurityCode;
-    private int PINCode;
+    private String cardSecurityCode;
+    private String PINCode;
     private double accountBalance;
 
-    public Card(String cardHolderName, String cardPAN, String cardExpiryDate, int cardSecurityCode, int PINCode, double accountBalance) {
+    public Card(String cardHolderName, String cardPAN, String cardExpiryDate, String cardSecurityCode, String PINCode, double accountBalance) {
         this.cardHolderName = cardHolderName;
         this.cardPAN = cardPAN;
         this.cardExpiryDate = cardExpiryDate;
@@ -30,15 +30,15 @@ public class Card {
         return cardExpiryDate;
     }
 
-    public int getCardSecurityCode() {
+    public String getCardSecurityCode() {
         return cardSecurityCode;
     }
 
-    public int getPINCode() {
+    public String getPINCode() {
         return PINCode;
     }
 
-    public void setPINCode(int PINCode) {
+    public void setPINCode(String PINCode) {
         this.PINCode = PINCode;
     }
 
