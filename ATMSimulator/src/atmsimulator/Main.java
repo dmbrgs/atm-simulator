@@ -6,11 +6,16 @@ public class Main {
 
         System.out.println("Some day it will be an ATM simulator.");
 
-        Card newCard = new Card("Roberts Dambergs", "1234567890123456", "03/25", "559", "0045" , 500.0);
+        Card newCard = new Card("Roberts Dambergs", "1234567890123456", "03/25", "559", "0045", 500.0);
         ATM myATM = new ATM(10000);
-        
-        if (true) {
-            System.out.println("Programma trurpinajas");
+
+        myATM.acceptCard(newCard);
+        System.out.println(myATM.getCard().toString());
+
+        boolean isCorrectPIN = myATM.acceptUserPIN();
+
+        if (isCorrectPIN) {
+            System.out.println("Programma turpinajas");
         } else {
             System.out.println("Programma beidzas");
         }
