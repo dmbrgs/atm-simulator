@@ -10,7 +10,9 @@ public class Main {
         ATM myATM = new ATM(10000);
         
         myATM.acceptCard(newCard);
-        if (myATM.checkPIN()) {
+        boolean correctPIN = myATM.checkPIN();
+        
+        if (correctPIN) {
             System.out.println("Programma trurpinajas");
         } else {
             System.out.println("Programma beidzas");

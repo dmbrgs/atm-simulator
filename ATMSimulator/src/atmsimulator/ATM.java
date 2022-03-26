@@ -32,23 +32,25 @@ public class ATM {
         return this.card.getPINCode().equals(userPIN);
     }
     
-    public boolean checkPIN() {
+    private String askUserPIN() {
         Scanner scanner = new Scanner(System.in);
-        
+        System.out.println("Enter PIN: ");
+        String userPIN = scanner.nextLine();
+        return userPIN;
+    }
+    
+    public boolean checkPIN() {
         for (int i=0; i < 3; i++) {
-            System.out.println("Enter PIN: ");
-            String userPIN = scanner.nextLine();
+            String userPIN = this.askUserPIN();
             
             if (this.isValidPIN(userPIN)) {
                 System.out.println("Success");
                 return true;
             }
             
-            if (i < 2)
-                System.out.println("Wrong PIN, please try again.\n");
+            if (i < 2) System.out.println("Wrong PIN, please try again.\n");
         }
         
-        System.out.println("Wrong PIN. Bank alert sent. Run.");
         return false;
     }    
 }
