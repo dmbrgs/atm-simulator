@@ -32,7 +32,7 @@ public class ATM {
         this.card = card;
     }
 
-    public String enterPIN() {
+    private String enterPIN() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter PIN:");
         String enteredPIN = scanner.nextLine();
@@ -40,7 +40,7 @@ public class ATM {
 
     }
 
-    public boolean isCorrectPIN(String enteredPIN) {
+    private boolean isCorrectPIN(String enteredPIN) {
         return this.card.getPINCode().equals(enteredPIN);
 
     }
@@ -59,5 +59,48 @@ public class ATM {
         }
 
         return false;
+    }
+
+    public void checkBalance() {
+
+        System.out.println("Screen or check?");
+        Scanner scanner = new Scanner(System.in);
+        String answer = scanner.nextLine();
+
+        if (answer.equals("Screen")) {
+            System.out.println("Your available balance is " + card.getAccountBalance());
+        } else if (answer.equals("Check")) {
+            System.out.println("Check printed.");
+        } else {
+            System.out.println("Input wasn't recognized.");
+
+        }
+    }
+
+    public void insertCash() {
+
+        System.out.println("Enter the amount of cash you want to deposit!");
+        Scanner scanner = new Scanner(System.in);
+        String answer = scanner.nextLine();
+
+        double deposit = Double.parseDouble(answer);
+        card.setAccountBalance(card.getAccountBalance() + deposit);
+        System.out.println("Cash successfully inserted.");
+
+    }
+
+    public void getCash() {
+        System.out.println("Enter the amount of cash you want to receive!");
+        Scanner scanner = new Scanner(System.in);
+        String answer = scanner.nextLine();
+
+        double withdrawal = Double.parseDouble(answer);
+
+        if (withdrawal <= card.getAccountBalance()) {
+            card.setAccountBalance(card.getAccountBalance() - withdrawal);
+            System.out.println("Please take your money!");
+        }else {
+            System.out.println("Not enough money in your account!");
+        }
     }
 }
