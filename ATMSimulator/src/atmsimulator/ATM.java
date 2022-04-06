@@ -32,12 +32,10 @@ public class ATM {
         this.card = card;
     }
 
-    private String enterPIN() {
+    public String acceptUserInput(String message) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter PIN:");
-        String enteredPIN = scanner.nextLine();
-        return enteredPIN;
-
+        System.out.println(message);
+        return scanner.nextLine();
     }
 
     private boolean isCorrectPIN(String enteredPIN) {
@@ -47,7 +45,7 @@ public class ATM {
 
     public boolean acceptUserPIN() {
         for (int i = 0; i < 3; i++) {
-            String enteredPIN = this.enterPIN();
+            String enteredPIN = this.acceptUserInput("Enter PIN: ");
 
             if (this.isCorrectPIN(enteredPIN)) {
                 return true;
@@ -62,10 +60,7 @@ public class ATM {
     }
 
     public void checkBalance() {
-
-        System.out.println("Screen or check?");
-        Scanner scanner = new Scanner(System.in);
-        String answer = scanner.nextLine();
+        String answer = this.acceptUserInput("Screen or Check?");
 
         if (answer.equals("Screen")) {
             System.out.println("Your available balance is " + card.getAccountBalance());
@@ -78,29 +73,32 @@ public class ATM {
     }
 
     public void insertCash() {
-
-        System.out.println("Enter the amount of cash you want to deposit!");
-        Scanner scanner = new Scanner(System.in);
-        String answer = scanner.nextLine();
-
-        double deposit = Double.parseDouble(answer);
-        card.setAccountBalance(card.getAccountBalance() + deposit);
-        System.out.println("Cash successfully inserted.");
-
+        String answer = this.acceptUserInput("Enter the amount of cash you want to deposit!");
+        
+        try {
+            double deposit = Double.parseDouble(answer);
+            card.setAccountBalance(card.getAccountBalance() + deposit);
+            this.cashInATM += deposit;
+            System.out.println("Cash successfully inserted.");
+        } catch(NumberFormatException e) {
+            System.out.println("Error. Next time, please enter a valid amount.");
+        }
     }
 
     public void getCash() {
-        System.out.println("Enter the amount of cash you want to receive!");
-        Scanner scanner = new Scanner(System.in);
-        String answer = scanner.nextLine();
-
-        double withdrawal = Double.parseDouble(answer);
-
-        if (withdrawal <= card.getAccountBalance()) {
-            card.setAccountBalance(card.getAccountBalance() - withdrawal);
-            System.out.println("Please take your money!");
-        }else {
-            System.out.println("Not enough money in your account!");
+        String answer = this.acceptUserInput("Enter the amount of cash you want to receive!");
+        try {
+            double withdrawal = Double.parseDouble(answer);
+            
+            if (withdrawal <= card.getAccountBalance()) {
+                card.setAccountBalance(card.getAccountBalance() - withdrawal);
+                this.cashInATM -= withdrawal;
+                System.out.println("Please take your money!");
+            } else {
+                System.out.println("Not enough money in your account!");
+            }
+        } catch(NumberFormatException e) {
+            System.out.println("Error. Next time, please enter a valid amount.");
         }
     }
 }
